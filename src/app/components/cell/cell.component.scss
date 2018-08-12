@@ -1,0 +1,16 @@
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+    cursor: pointer;
+    &--red {
+        background: red;
+    }
+    &--green {
+        background: green;
+    }
+}

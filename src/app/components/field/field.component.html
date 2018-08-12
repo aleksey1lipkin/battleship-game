@@ -1,0 +1,17 @@
+<div class="field">
+  <div class="field__annotation">
+    <div class="field__letter" *ngFor="let number of numberAnnotation">{{number}}</div>
+  </div>
+  <div class="field__center-block">
+    <div class="field__annotation field__annotation--vertical">
+      <div class="field__letter" *ngFor="let letter of letterAnnotation">{{letter}}</div>
+    </div>
+    <div class="field__cells-wrapper">
+      <ng-container *ngFor="let cell of cells">
+        <ng-container *ngFor="let item of cell">
+          <app-cell [cell]="item" (changeCellStatus)="onChangeCellStatus($event)"></app-cell>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.footer {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -2px 3px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 16px;
+}
+.copyright {
+    &__text {
+        font-size: 16px;
+        &:before {
+            content: "\00a9";
+            margin-right: 8px;
+        }
+    }
+}
+.social {
+    &__list {
+        display: flex;
+    }
+    &__item {
+        margin-left: 8px;
+    }
+    &__icon {
+        display: block;
+        width: 32px;
+        height: 32px;
+        &--git {
+            background: url('./images/icons/git-icon.png') center no-repeat;
+        }
+        &--vk {
+            background: url('./images/icons/vk-icon.png') center no-repeat;
+        }
+    }
+}
