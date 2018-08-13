@@ -8,9 +8,7 @@
     </div>
     <div class="field__cells-wrapper">
       <ng-container *ngFor="let cell of cells">
-        <ng-container *ngFor="let item of cell">
-          <app-cell [cell]="item" (changeCellStatus)="onChangeCellStatus($event)"></app-cell>
-        </ng-container>
+          <app-cell [cell]="cell" (changeCellStatus)="onChangeCellStatus($event)"></app-cell>
       </ng-container>
     </div>
   </div>

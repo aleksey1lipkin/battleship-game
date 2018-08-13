@@ -8,7 +8,7 @@ import { CellStatus } from '../cell/cell.status';
 })
 export class FieldComponent implements OnInit {
   size = 10;
-  cells: Array<Array<Cell>>;
+  cells: Array<Cell>;
   letterAnnotation: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   numberAnnotation: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   constructor() { }
@@ -18,33 +18,35 @@ export class FieldComponent implements OnInit {
   }
   init(): void {
     // tslint:disable-next-line: prefer-const
-    let cells: Array<Array<Cell>> = [];
-
-    for (let i = 0; i < this.size; i++) {
-      cells[i] = [];
-      for (let j = 0; j < this.size; j++) {
-        cells[i][j] = new Cell(i, j, CellStatus.default);
+    let cells: Array<Cell> = [];
+    const cellCounter = Math.pow(this.size, 2);
+    let x = 0;
+    let y = 0;
+    for (let i = 0; i < cellCounter; i++) {
+      if ( i !== 0 && i % 10 === 0 ) {
+        x++;
+        y = 0;
       }
+      cells[i] = new Cell(x, y, CellStatus.default);
+      y++;
     }
     this.cells = cells;
   }
   onChangeCellStatus(cell: Cell): void {
-    this.cells.forEach(row => {
-      row.forEach(elem => {
-        if (elem.x === cell.x && elem.y === cell.y) {
+    this.cells.forEach(item => {
+        if (item.x === cell.x && item.y === cell.y) {
           switch (cell.status) {
             case 0:
-              elem.status = CellStatus.miss;
+              item.status = CellStatus.miss;
               break;
             case 1:
-              elem.status = CellStatus.hit;
+              item.status = CellStatus.hit;
               break;
             default:
-              elem.status = CellStatus.default;
+              item.status = CellStatus.default;
               break;
           }
         }
-      });
     });
   }
 }
