@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Ship } from '../ship/ship.model';
-import { ShipType } from '../ship/ship.type';
+import { Ship } from '../../models/ship/ship.model';
+import { ShipType } from '../../models/ship/ship.type';
 
 @Component({
   selector: 'app-player',

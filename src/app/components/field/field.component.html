@@ -1,4 +1,5 @@
 <div class="field">
+  <button (click)="arrangeShips()">Расставить корабли</button>
   <div class="field__annotation">
     <div class="field__letter" *ngFor="let number of numberAnnotation">{{number}}</div>
   </div>
@@ -7,8 +8,8 @@
       <div class="field__letter" *ngFor="let letter of letterAnnotation">{{letter}}</div>
     </div>
     <div class="field__cells-wrapper">
-      <ng-container *ngFor="let cell of cells">
-          <app-cell [cell]="cell" (changeCellStatus)="onChangeCellStatus($event)"></app-cell>
+      <ng-container *ngFor="let cell of field">
+          <app-cell [cell]="cell"></app-cell>
       </ng-container>
     </div>
   </div>

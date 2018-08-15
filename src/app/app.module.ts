@@ -9,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShipComponent } from './components/ship/ship.component';
 import { PlayerComponent } from './components/player/player.component';
+import { PlayerService } from './services/player.service';
+import { ArrangeShipsService } from './services/arrange-ships.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { PlayerComponent } from './components/player/player.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [PlayerService, ArrangeShipsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

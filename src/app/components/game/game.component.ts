@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { GameStatus } from './game.status';
+import { GameService } from '../../services/game.service';
+import { PlayerService } from '../../services/player.service';
+import { Player } from '../../models/player';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
+  providers: [GameService]
 })
 export class GameComponent implements OnInit {
-  public status: number;
-  public player1Name: string;
-  public player2Name: string;
-  private winner: string;
-  public isGameVsComputer: Boolean;
-
-  constructor() {
-    // default status is none
-    this.status = GameStatus.default;
-    this.winner = null;
+  readyPlayerCounter = 0;
+  player: Player = this.playerService.player;
+  enemy: Player = this.playerService.enemy;
+  constructor(
+    private gameService: GameService,
+    private playerService: PlayerService,
+  ) {
+    this.gameService.changeGameStatus(GameStatus.default);
   }
   ngOnInit() {}
-  changeStatus(newStatus: number): void {
-    this.status = newStatus;
-  }
-  changeType(type: string): void {
-    // this method defines what type of game will be
+  changeStatusToReady() {
+    this.readyPlayerCounter++;
+    if (this.readyPlayerCounter === 2) {
+      this.gameService.changeGameStatus(GameStatus.gameStarted);
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { ShipType } from './ship.type';
+import { ShipStatus } from './ship.status';
 
 export class Ship {
     // ship type (oneDeck, etc)
@@ -8,9 +9,10 @@ export class Ship {
     lifes: number;
     // ship coords in the field
     coordinates: {};
-    // isDead determines if the ship is destroyed or not
-    isDead: boolean;
+    status: ShipStatus = ShipStatus.default;
     // when you init Ship define characteristics
+    x: number = null;
+    y: number = null;
     constructor(type: ShipType) {
         this.type = type;
         switch (this.type) {
@@ -33,13 +35,11 @@ export class Ship {
         }
         this.size = type;
         this.lifes = type;
-        this.isDead = false;
     }
     // define ship reaction on hit
     onHit() {
         this.lifes = this.lifes - 1;
         if (this.lifes === 0) {
-            this.isDead = true;
             // needs to return some event or function for outside classes when ship is destroyed
         }
     }
