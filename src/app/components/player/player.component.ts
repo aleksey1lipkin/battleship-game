@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Cell } from '../../models/cell/cell.model';
 import { Ship } from '../../models/ship/ship.model';
-import { ShipType } from '../../models/ship/ship.type';
+import { ArrangeShipsService } from '../../services/arrange-ships.service';
+import { FireService } from '../../services/fire.service';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-player',
@@ -8,19 +11,31 @@ import { ShipType } from '../../models/ship/ship.type';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit {
-  name: string;
-  shipsArray: Ship[];
-  shotStatistic: {} = {};
-  constructor(name: string) {
-    this.name = name;
-    // each player have names and array of ships (four single-decker, three two-decker and so on)
-    this.shipsArray.push(new Ship(ShipType.oneDeck));
+  @Input() field: Array<Cell>;
+  @Input() isShipsVisible: boolean;
+  @Input() isCanFire: boolean;
+  @Input() fleet: Array<Ship>;
+  @Input() movesHistory: Array<string> = [];
+  showButton = true;
+  constructor(
+    private arrangeShipService: ArrangeShipsService,
+    private fireService: FireService
+  ) {
+
   }
-  ngOnInit() {}
-  // each player can shoot
-  onShoot() {
-    // the shot goes on two coordinates,
-    // it is necessary to check whether there was already a shot at these coordinates or not
-    // you must return response from field and send it to shotStatistic
+  ngOnInit() {
+    if (this.isCanFire) {
+      this.arrangeShipService.placeShips(this.field, this.fleet);
+    }
+  }
+  arrangeShips() {
+    this.arrangeShipService.placeShips(this.field, this.fleet);
+    this.showButton = false;
+  }
+  fire(cell: Cell) {
+    if (!this.isCanFire || cell.isFired) {
+      return;
+    }
+    this.fireService.makeShot(cell);
   }
 }

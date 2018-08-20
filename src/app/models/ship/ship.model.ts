@@ -8,11 +8,8 @@ export class Ship {
     size: number;
     lifes: number;
     // ship coords in the field
-    coordinates: {};
+    coordinates: Array<{x: number, y: number}> = [];
     status: ShipStatus = ShipStatus.default;
-    // when you init Ship define characteristics
-    x: number = null;
-    y: number = null;
     constructor(type: ShipType) {
         this.type = type;
         switch (this.type) {
@@ -35,15 +32,5 @@ export class Ship {
         }
         this.size = type;
         this.lifes = type;
-    }
-    // define ship reaction on hit
-    onHit() {
-        this.lifes = this.lifes - 1;
-        if (this.lifes === 0) {
-            // needs to return some event or function for outside classes when ship is destroyed
-        }
-    }
-    onChangePosition() {
-        // this method determine coords of the ship
     }
 }

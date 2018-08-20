@@ -2,12 +2,19 @@ import { Cell } from '../models/cell/cell.model';
 import { CellStatus } from '../models/cell/cell.status';
 import { Ship } from '../models/ship/ship.model';
 import { ShipStatus } from '../models/ship/ship.status';
+import { Injectable } from '@angular/core';
+import { ChangeStatusService } from './change-status.service';
+import { GetCellNeighborsService } from './get-cell-neighbors.service';
 
+@Injectable()
 export class ArrangeShipsService {
   field: Array<Cell> = [];
   ships: Array<Ship> = [];
-  constructor() { }
-  placeShips(cells: Array<Cell>, ships: Array<Ship>) {
+  constructor(
+    private changeStatusService: ChangeStatusService,
+    private getCellNeighborsService: GetCellNeighborsService
+  ) { }
+  public placeShips(cells: Array<Cell>, ships: Array<Ship>) {
     this.field = cells;
     this.ships = ships;
     /*1) принять массив ячеек и корабли, которые надо поставить +
@@ -19,9 +26,9 @@ export class ArrangeShipsService {
       6) если нет - берём новую ячейку и ищем дальше
       7) проверять все ли корабли поставили */
     this.startRanking();
-    return {'field': this.field, 'ships': this.ships};
+    this.changeStatusService.playerIsReady();
   }
-  startRanking() {
+  private startRanking() {
     this.ships.forEach(ship => {
       if (ship.status === ShipStatus.default) {
         const startPosition = this.getRandomCell();
@@ -42,7 +49,7 @@ export class ArrangeShipsService {
       }
     }
   }
-  checkRankingForFinish(): boolean {
+  private checkRankingForFinish(): boolean {
     let isFinished = true;
     this.ships.forEach(ship => {
       if (ship.status !== ShipStatus.placed) {
@@ -51,55 +58,46 @@ export class ArrangeShipsService {
     });
     return isFinished;
   }
-  getRandomCell(): number {
+  private getRandomCell(): number {
     return Math.floor(Math.random() * 100);
   }
-  placeShipOnField(startPosition: number, ship: Ship, direction: string) {
+  private placeShipOnField(startPosition: number, ship: Ship, direction: string) {
     const cellsArray: Array<Cell> = [];
     const multiplier = direction === 'right' ? 1 : 10;
     for (let i = 0; i < ship.size; i++) {
-      // console.log(startPosition + i + additive);
-      this.field[startPosition + i * multiplier].status = CellStatus.shipPlaced;
-      cellsArray.push(this.field[startPosition + i * multiplier]);
+      const rate = startPosition + i * multiplier;
+      this.field[rate].status = CellStatus.shipPlaced;
+      this.field[rate].isShipPlaced = true;
+      cellsArray.push(this.field[rate]);
+      ship.coordinates.push({x: this.field[rate].x, y: this.field[rate].y});
     }
     ship.status = ShipStatus.placed;
     this.createBufferZone(cellsArray);
   }
-  createBufferZone(cellsArray: Array<Cell>) {
+  private createBufferZone(cellsArray: Array<Cell>) {
     cellsArray.forEach(cell => {
-      const {x, y} = cell;
-      this.field.forEach(item => {
-        if (
-          ( item.x === x - 1 && item.y === y - 1 ) ||
-          ( item.x === x - 1 && item.y === y ) ||
-          ( item.x === x - 1 && item.y === y + 1 ) ||
-          ( item.x === x && item.y === y - 1 ) ||
-          ( item.x === x && item.y === y ) ||
-          ( item.x === x && item.y === y + 1 ) ||
-          ( item.x === x + 1 && item.y === y - 1 ) ||
-          ( item.x === x + 1 && item.y === y ) ||
-          ( item.x === x + 1 && item.y === y + 1 )
-          ) {
-            if (item.status === CellStatus.default) {
-              item.status = CellStatus.buffer;
-            }
-            }
+      const neighbors = this.getCellNeighborsService.getCellNeighbors(cell, this.field);
+      neighbors.forEach(neighbor => {
+          if (neighbor.status === CellStatus.default) {
+            neighbor.status = CellStatus.buffer;
+          }
       });
     });
     /*1) взять ячейки, вокруг которых нужно создать зону
       2) запустить цикл по этим ячейкам
       3) в цикле нужно что-то написать, чтобы вокруг ячейки соседние изменили статус */
   }
-  checkCellsForEmptyStatus(startPosition: number, shipSize: number, direction: string): boolean {
+  private checkCellsForEmptyStatus(startPosition: number, shipSize: number, direction: string): boolean {
     /* нужно проверить направление, если вправо, то ничего не меняем
       если вниз, то надо че то сделать, по факту прибавить к i 10 */
       const multiplier = direction === 'right' ? 1 : 10;
     for (let i = 0; i < shipSize; i++) {
-      if (startPosition + i * multiplier > this.field.length - 1) {
+      const rate = startPosition + i * multiplier;
+      if (rate > this.field.length - 1) {
         return false;
       }
-      if (this.field[startPosition + i * multiplier].status === CellStatus.shipPlaced ||
-          this.field[startPosition + i * multiplier].status === CellStatus.buffer) {
+      if (this.field[rate].status === CellStatus.shipPlaced ||
+          this.field[rate].status === CellStatus.buffer) {
           return false;
         }
     }
@@ -110,7 +108,7 @@ export class ArrangeShipsService {
       4) если нет вернуть false и выбрать новую ячейку
       5) если да вернуть true и пусть кто-то посадит туда корабли*/
   }
-  checkFieldForLineBreak(startPosition: number, shipSize: number): boolean {
+  private checkFieldForLineBreak(startPosition: number, shipSize: number): boolean {
     const {x, y} = this.field[startPosition];
     for (let i = 0; i < shipSize; i++) {
       // this condition check field for line break

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Ship } from '../../models/ship/ship.model';
 
 @Component({
@@ -6,11 +6,8 @@ import { Ship } from '../../models/ship/ship.model';
   templateUrl: './ship.component.html',
   styleUrls: ['./ship.component.scss']
 })
-export class ShipComponent implements OnInit {
-  ship: Ship;
+export class ShipComponent {
+  @Input() ship: Ship;
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

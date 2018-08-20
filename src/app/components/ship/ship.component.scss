@@ -1,0 +1,13 @@
+.ship {
+    display: flex;
+    margin-bottom: 5px;
+    &__deck {
+        width: 30px;
+        height: 30px;
+        border: 1px solid blue;
+        border-right: none;
+        &:last-child {
+            border-right: 1px solid blue;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.game-field {
+    display: flex;
+}
+.field {
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+.game-history {
+    height: 5em;
+    overflow: hidden;
+    overflow-y: auto;
+    max-width: 300px;
+    &__item {
+        margin-bottom: 4px;
+        display: flex;
+    }
+    &__number {
+        &:after {
+            content: ")";
+            display: inline-block;
+            margin-right: 4px;
+        }
+    }
+    &__text {
+
+    }
+}

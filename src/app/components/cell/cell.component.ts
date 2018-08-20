@@ -8,11 +8,9 @@ import { Cell } from '../../models/cell/cell.model';
 })
 export class CellComponent implements OnInit {
     @Input() cell: Cell;
-    @Output() changeCellStatus = new EventEmitter<Cell>();
+    @Input() isShipsVisible: boolean;
     constructor() {}
 
     ngOnInit() {}
-    handleClick() {
-      this.changeCellStatus.emit(this.cell);
-    }
+    handleClick() {}
 }

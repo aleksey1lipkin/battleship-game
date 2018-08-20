@@ -9,8 +9,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShipComponent } from './components/ship/ship.component';
 import { PlayerComponent } from './components/player/player.component';
-import { PlayerService } from './services/player.service';
+import { GameService } from './services/game.service';
 import { ArrangeShipsService } from './services/arrange-ships.service';
+import { FleetComponent } from './components/fleet/fleet.component';
+import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
+import { StatusBarComponent } from './components/status-bar/status-bar.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import { ArrangeShipsService } from './services/arrange-ships.service';
     HeaderComponent,
     FooterComponent,
     ShipComponent,
-    PlayerComponent
+    PlayerComponent,
+    FleetComponent,
+    NumberToArrayPipe,
+    StatusBarComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [PlayerService, ArrangeShipsService],
+  providers: [GameService, ArrangeShipsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

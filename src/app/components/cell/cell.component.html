@@ -1,7 +1,12 @@
 <div 
-  class="cell" 
-  (click)="handleClick()" 
-  [ngClass]="{'cell--red': cell.status === 4, 'cell--green': cell.status === 3}"
+  class="cell"
 >
-  {{cell.x}}{{cell.y}}
+  <div *ngIf="cell.status === 3 && isShipsVisible; else defaultCell" class="cell__ship"></div>
+  <ng-template #defaultCell>
+    <div 
+      [ngClass]="{
+      'cell__miss': cell.status === 1,
+      'cell__hit': cell.status === 2
+      }"></div>
+  </ng-template>
 </div>

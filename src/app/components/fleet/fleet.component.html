@@ -1,0 +1,22 @@
+<div class="fleet">
+  <div class="fleet__row">
+    <div *ngFor="let ship of oneDeckFleet" class="fleet__ship">
+      <app-ship [ship]="ship" *ngIf="ship.lifes > 0"></app-ship>
+    </div>
+  </div>
+  <div class="fleet__row">
+    <div *ngFor="let ship of twoDeckFleet" class="fleet__ship">
+      <app-ship [ship]="ship" *ngIf="ship.lifes > 0"></app-ship>
+    </div>
+  </div>
+  <div class="fleet__row">
+    <div *ngFor="let ship of threeDeckFleet" class="fleet__ship">
+      <app-ship [ship]="ship" *ngIf="ship.lifes > 0"></app-ship>
+    </div>
+  </div>
+  <div class="fleet__row">
+    <div *ngFor="let ship of fourDeckFleet" class="fleet__ship">
+      <app-ship [ship]="ship" *ngIf="ship.lifes > 0"></app-ship>
+    </div>
+  </div>
+</div>

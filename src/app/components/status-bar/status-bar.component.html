@@ -1,0 +1,6 @@
+<div [ngSwitch]="gameService.game.gameStatus" class="status-bar">
+  <p *ngSwitchCase="2">Game is started</p>
+  <p *ngSwitchCase="3">Player one turn</p>
+  <p *ngSwitchCase="4">Player two turn</p>
+  <p *ngSwitchDefault>Waiting for players</p>
+</div>

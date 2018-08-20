@@ -1,5 +1,4 @@
 <div class="field">
-  <button (click)="arrangeShips()">Расставить корабли</button>
   <div class="field__annotation">
     <div class="field__letter" *ngFor="let number of numberAnnotation">{{number}}</div>
   </div>
@@ -9,7 +8,7 @@
     </div>
     <div class="field__cells-wrapper">
       <ng-container *ngFor="let cell of field">
-          <app-cell [cell]="cell"></app-cell>
+          <app-cell [cell]="cell" (click)="onClick(cell)" [isShipsVisible]="isShipsVisible"></app-cell>
       </ng-container>
     </div>
   </div>

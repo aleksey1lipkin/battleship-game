@@ -1,12 +1,21 @@
 <div class="container">
-    <main class="game">
-        <app-field 
-            [field]="player.field" 
-            [isShipsVisible]="true">
-        </app-field>
-        <app-field 
-            [field]="enemy.field" 
-            [isShipsVisible]="true">
-        </app-field>
-    </main>
+    <div class="game-wrapper">
+        <app-status-bar></app-status-bar>
+        <main class="game">
+            <app-player
+                [field]="player.field"
+                [fleet]="player.fleet"
+                [isShipsVisible]="true" 
+                [isCanFire]="false"
+                [movesHistory]="player.movesHistory">
+            </app-player>
+            <app-player
+                [field]="enemy.field"
+                [fleet]="enemy.fleet"
+                [isShipsVisible]="false" 
+                [isCanFire]="true"
+                [movesHistory]="enemy.movesHistory">
+            </app-player>
+        </main>
+    </div>
 </div>

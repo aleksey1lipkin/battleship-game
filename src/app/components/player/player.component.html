@@ -1,3 +1,16 @@
-<p>
-  player works!
-</p>
+<button *ngIf="isShipsVisible && showButton" (click)="arrangeShips()">Расставить корабли</button>
+<div class="game-field">
+    <app-field 
+        class="field" 
+        [field]="field" 
+        (handleClick)="fire($event)" 
+        [isShipsVisible]="isShipsVisible">
+    </app-field>
+    <app-fleet [fleet]="fleet"></app-fleet>
+</div>
+<ul class="game-history">
+    <li class="game-history__item" *ngFor="let text of movesHistory; let i = index">
+        <span class="game-history__number">{{i + 1}}</span>
+        <p class="game-history__text">{{text}}</p>
+    </li>
+</ul>
