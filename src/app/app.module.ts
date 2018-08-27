@@ -9,11 +9,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShipComponent } from './components/ship/ship.component';
 import { PlayerComponent } from './components/player/player.component';
+import { FleetComponent } from './components/fleet/fleet.component';
+import { StatusBarComponent } from './components/status-bar/status-bar.component';
 import { GameService } from './services/game.service';
 import { ArrangeShipsService } from './services/arrange-ships.service';
-import { FleetComponent } from './components/fleet/fleet.component';
 import { NumberToArrayPipe } from './pipes/number-to-array.pipe';
-import { StatusBarComponent } from './components/status-bar/status-bar.component';
+import { HomeComponent } from './components/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SortFleetPipe } from './components/fleet/sort-fleet.pipe';
 
 @NgModule({
   declarations: [
@@ -27,10 +32,15 @@ import { StatusBarComponent } from './components/status-bar/status-bar.component
     PlayerComponent,
     FleetComponent,
     NumberToArrayPipe,
-    StatusBarComponent
+    StatusBarComponent,
+    HomeComponent,
+    SortFleetPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [GameService, ArrangeShipsService],
   bootstrap: [AppComponent]

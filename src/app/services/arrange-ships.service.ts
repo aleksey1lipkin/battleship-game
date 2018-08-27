@@ -86,7 +86,7 @@ export class ArrangeShipsService {
   */
   private createBufferZone(cellsArray: Array<Cell>) {
     cellsArray.forEach(cell => {
-      const neighbors = this.getCellNeighborsService.getCellNeighbors(cell, this.field);
+      const neighbors = this.getCellNeighborsService.getCellNeighbors(cell.x, cell.y, this.field);
       neighbors.forEach(neighbor => {
           if (neighbor.status === CellStatus.default) {
             neighbor.status = CellStatus.buffer;

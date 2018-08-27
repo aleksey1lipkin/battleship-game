@@ -1,0 +1,36 @@
+<mat-card class="login-card">
+  <mat-card-title class="login-card__title">Battleship Game</mat-card-title>
+  <form class="login-card__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input formControlName="name" matInput placeholder="Enter your name">
+        <mat-error *ngIf="loginForm.controls.name.invalid">Please enter your name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        (selectionChange)="onSelectChange($event.value)"
+        formControlName="gameType"
+        placeholder="Select game type">
+          <mat-option *ngFor="let type of types" [value]="type">Versus {{type}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="loginForm.controls.gameType.invalid">Please select the type of game</mat-error>
+    </mat-form-field>
+    <mat-radio-group
+      *ngIf="loginForm.controls.gameLevel"
+      formControlName="gameLevel"
+      class="login-card__radio-group">
+      <mat-radio-button
+        *ngFor="let level of levels"
+        [checked]="level ==='easy'" 
+        [value]="level"
+        class="login-card__radio-button">
+        {{level}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <button
+      type="submit"
+      mat-raised-button 
+      color="accent">
+        Start game
+    </button>
+  </form>
+</mat-card>

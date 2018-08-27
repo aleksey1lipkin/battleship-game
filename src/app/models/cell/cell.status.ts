@@ -4,4 +4,5 @@ export enum CellStatus {
     hit = 2,
     shipPlaced = 3,
     buffer = 4, // use it for left space between ships
+    shipIsDead = 5
 }

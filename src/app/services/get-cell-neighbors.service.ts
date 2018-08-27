@@ -7,8 +7,7 @@ import { Cell } from '../models/cell/cell.model';
 export class GetCellNeighborsService {
 
   constructor() { }
-  getCellNeighbors = (cell: Cell, field: Array<Cell>) => {
-    const {x, y} = cell;
+  getCellNeighbors = (x: number, y: number, field: Array<Cell>) => {
     const result: Array<Cell> = [];
     const neighbors: Array<Array<number>> = [
         [x - 1, y - 1], [x - 1, y], [x - 1, y + 1],

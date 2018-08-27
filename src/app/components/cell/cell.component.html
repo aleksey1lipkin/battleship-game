@@ -5,8 +5,8 @@
   <ng-template #defaultCell>
     <div 
       [ngClass]="{
-      'cell__miss': cell.status === 1,
-      'cell__hit': cell.status === 2
+        'cell__miss': cell.status === 1,
+        'cell__hit': cell.status === 2 || cell.status === 5
       }"></div>
   </ng-template>
 </div>

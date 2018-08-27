@@ -1,0 +1,22 @@
+:host() {
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.login-card {
+    width: 320px;
+
+    &__title {
+        font-size: 20px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+    &__radio-group {
+        margin-bottom: 1.25em;
+    }
+    &__radio-button {
+        margin-right: 8px;
+    }
+}

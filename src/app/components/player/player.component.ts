@@ -3,7 +3,6 @@ import { Cell } from '../../models/cell/cell.model';
 import { Ship } from '../../models/ship/ship.model';
 import { ArrangeShipsService } from '../../services/arrange-ships.service';
 import { FireService } from '../../services/fire.service';
-import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-player',

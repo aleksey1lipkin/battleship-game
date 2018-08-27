@@ -14,7 +14,6 @@ export class ChangeStatusService {
   }
   public changeGameStatus(newStatus: GameStatus): void {
     this.gameService.game.gameStatus = newStatus;
-    console.log(`new status is ${GameStatus[this.gameService.game.gameStatus]}`);
   }
   private checkGameForStart() {
     if (this.counterReadyPlayer === 2) {
