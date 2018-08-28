@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GameService } from '../../services/game.service';
 import { ComputerAIService } from '../../services/computer-ai.service';
 import { Router } from '@angular/router';
-import { GameLevels } from '../../models/game/game.levels';
+import { GameLevels } from '../game/models/game.levels';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',

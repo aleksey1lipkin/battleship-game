@@ -1,10 +1,10 @@
-import { Cell } from '../models/cell/cell.model';
-import { CellStatus } from '../models/cell/cell.status';
-import { Ship } from '../models/ship/ship.model';
-import { ShipStatus } from '../models/ship/ship.status';
+import { Cell } from '../components/field/cell/models/cell.model';
+import { CellStatus } from '../components/field/cell/models/cell.status';
 import { Injectable } from '@angular/core';
 import { ChangeStatusService } from './change-status.service';
 import { GetCellNeighborsService } from './get-cell-neighbors.service';
+import { Ship } from '../components/player/fleet/ship/models/ship.model';
+import { ShipStatus } from '../components/player/fleet/ship/models/ship.status';
 
 @Injectable()
 export class ArrangeShipsService {

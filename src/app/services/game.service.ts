@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Player } from '../models/player/player';
-import { Game } from '../models/game/game';
+import { Player } from '../components/player/models/player';
+import { Game } from '../components/game/models/game';
 import { Subject } from 'rxjs';
 
 @Injectable()

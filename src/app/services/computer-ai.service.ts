@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GameService } from './game.service';
-import { Cell } from '../models/cell/cell.model';
+import { Cell } from '../components/field/cell/models/cell.model';
 import { GetCellNeighborsService } from './get-cell-neighbors.service';
-import { GameLevels } from '../models/game/game.levels';
+import { GameLevels } from '../components/game/models/game.levels';
 
 @Injectable({
     providedIn: 'root'

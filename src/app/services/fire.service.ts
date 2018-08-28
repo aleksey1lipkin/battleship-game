@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Cell } from '../models/cell/cell.model';
 import { SwitchTurnService } from './switch-turn.service';
 import { GameService } from './game.service';
 import { MovesHistoryService } from './moves-history.service';
 import { ComputerAIService } from './computer-ai.service';
 import { GetCellNeighborsService } from './get-cell-neighbors.service';
-import { CellStatus } from '../models/cell/cell.status';
+import { Cell } from '../components/field/cell/models/cell.model';
+import { CellStatus } from '../components/field/cell/models/cell.status';
 
 @Injectable({
     providedIn: 'root'

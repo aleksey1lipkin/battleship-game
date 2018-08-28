@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GameService } from './game.service';
 import { ChangeStatusService } from './change-status.service';
-import { GameStatus } from '../models/game/game.status';
+import { GameStatus } from '../components/game/models/game.status';
 
 @Injectable({
     providedIn: 'root'

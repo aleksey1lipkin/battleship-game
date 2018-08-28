@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Ship } from '../../models/ship/ship.model';
+import { Ship } from './ship/models/ship.model';
 
 @Pipe({
     name: 'sortFleet'

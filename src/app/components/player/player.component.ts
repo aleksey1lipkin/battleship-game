@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Cell } from '../../models/cell/cell.model';
-import { Ship } from '../../models/ship/ship.model';
+import { Cell } from '../field/cell/models/cell.model';
 import { ArrangeShipsService } from '../../services/arrange-ships.service';
 import { FireService } from '../../services/fire.service';
+import { Ship } from './fleet/ship/models/ship.model';
 
 @Component({
   selector: 'app-player',

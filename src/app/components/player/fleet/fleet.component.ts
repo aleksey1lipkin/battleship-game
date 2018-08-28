@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Ship } from '../../models/ship/ship.model';
+import { Ship } from './ship/models/ship.model';
 
 @Component({
   selector: 'app-fleet',

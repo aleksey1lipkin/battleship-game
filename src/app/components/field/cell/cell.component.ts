@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Cell } from '../../models/cell/cell.model';
+import { Cell } from './models/cell.model';
 
 @Component({
     selector: 'app-cell',

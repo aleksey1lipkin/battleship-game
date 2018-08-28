@@ -1,8 +1,8 @@
-import { Cell } from '../cell/cell.model';
-import { CellStatus } from '../cell/cell.status';
-import { Ship } from '../ship/ship.model';
-import { ShipType } from '../ship/ship.type';
-import { ShipStatus } from '../ship/ship.status';
+import { Cell } from '../../field/cell/models/cell.model';
+import { CellStatus } from '../../field/cell/models/cell.status';
+import { Ship } from '../fleet/ship/models/ship.model';
+import { ShipType } from '../fleet/ship/models/ship.type';
+import { ShipStatus } from '../fleet/ship/models/ship.status';
 
 export class Player {
     field: Array<Cell> = [];

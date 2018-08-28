@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameStatus } from '../models/game/game.status';
+import { GameStatus } from '../components/game/models/game.status';
 import { GameService } from './game.service';
 
 @Injectable({
