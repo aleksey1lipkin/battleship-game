@@ -8,6 +8,5 @@ export class Game {
     constructor() {
         this.isHumanTurn = true;
         this.turnNumber = 0;
-        this.gameStatus = GameStatus.default;
     }
 }

@@ -1,7 +1,7 @@
 import { Cell } from '../components/field/cell/models/cell.model';
 import { CellStatus } from '../components/field/cell/models/cell.status';
 import { Injectable } from '@angular/core';
-import { ChangeStatusService } from './change-status.service';
+import { GameStatusService } from './game-status.service';
 import { GetCellNeighborsService } from './get-cell-neighbors.service';
 import { Ship } from '../components/player/fleet/ship/models/ship.model';
 import { ShipStatus } from '../components/player/fleet/ship/models/ship.status';
@@ -11,7 +11,7 @@ export class ArrangeShipsService {
   field: Array<Cell> = [];
   ships: Array<Ship> = [];
   constructor(
-    private changeStatusService: ChangeStatusService,
+    private gameStatusService: GameStatusService,
     private getCellNeighborsService: GetCellNeighborsService
   ) { }
 
@@ -19,7 +19,7 @@ export class ArrangeShipsService {
     this.field = cells;
     this.ships = ships;
     this.startRanking();
-    this.changeStatusService.playerIsReady();
+    this.gameStatusService.playerIsReady();
   }
 
   private startRanking() {

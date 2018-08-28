@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GameService } from './game.service';
-import { ChangeStatusService } from './change-status.service';
+import { GameStatusService } from './game-status.service';
 import { GameStatus } from '../components/game/models/game.status';
 
 @Injectable({
@@ -9,14 +9,14 @@ import { GameStatus } from '../components/game/models/game.status';
 export class SwitchTurnService {
     constructor(
         private gameService: GameService,
-        private changeStatusService: ChangeStatusService
+        private gameStatusService: GameStatusService
     ) {}
     public switchTurn() {
         this.gameService.game.isHumanTurn = !this.gameService.game.isHumanTurn;
         if (this.gameService.game.isHumanTurn) {
-            this.changeStatusService.changeGameStatus(GameStatus.playerTurn);
+            this.gameStatusService.changeGameStatus(GameStatus.playerTurn);
         } else {
-            this.changeStatusService.changeGameStatus(GameStatus.enemyTurn);
+            this.gameStatusService.changeGameStatus(GameStatus.enemyTurn);
         }
     }
 }

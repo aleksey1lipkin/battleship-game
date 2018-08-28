@@ -5,10 +5,10 @@ import { GameService } from './game.service';
 @Injectable({
     providedIn: 'root'
 })
-export class ChangeStatusService {
+export class GameStatusService {
   private counterReadyPlayer = 0;
   constructor(private gameService: GameService) {}
-  playerIsReady() {
+  public playerIsReady() {
     this.counterReadyPlayer++;
     this.checkGameForStart();
   }
@@ -18,7 +18,9 @@ export class ChangeStatusService {
   private checkGameForStart() {
     if (this.counterReadyPlayer === 2) {
       this.changeGameStatus(GameStatus.gameStarted);
-      // this.switchTurnService.switchTurn();
     }
+  }
+  public getStatus() {
+    return this.gameService.game.gameStatus;
   }
 }

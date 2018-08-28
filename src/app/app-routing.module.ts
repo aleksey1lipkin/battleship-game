@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { GameComponent } from './components/game/game.component';
+import { LoginGuard } from './login-guard.service';
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'game', component: GameComponent}
+    {path: 'game', canActivate: [LoginGuard], component: GameComponent}
 ];
 
 @NgModule({

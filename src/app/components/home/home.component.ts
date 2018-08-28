@@ -4,6 +4,8 @@ import { GameService } from '../../services/game.service';
 import { ComputerAIService } from '../../services/computer-ai.service';
 import { Router } from '@angular/router';
 import { GameLevels } from '../game/models/game.levels';
+import { GameStatusService } from '../../services/game-status.service';
+import { GameStatus } from '../game/models/game.status';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -16,6 +18,7 @@ export class HomeComponent implements OnInit {
     loginForm: FormGroup;
     constructor(
         private gameService: GameService,
+        private gameStatusService: GameStatusService,
         private computerAIService: ComputerAIService,
         private router: Router
     ) {}
@@ -38,6 +41,7 @@ export class HomeComponent implements OnInit {
             this.computerAIService.setLevel(settings.gameLevel);
         }
         if (this.loginForm.valid) {
+            this.gameStatusService.changeGameStatus(GameStatus.default);
             this.router.navigate(['/game']);
         }
     }

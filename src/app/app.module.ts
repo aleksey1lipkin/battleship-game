@@ -19,6 +19,7 @@ import { CellComponent } from './components/field/cell/cell.component';
 import { FleetComponent } from './components/player/fleet/fleet.component';
 import { SortFleetPipe } from './components/player/fleet/sort-fleet.pipe';
 import { ShipComponent } from './components/player/fleet/ship/ship.component';
+import { LoginGuard } from './login-guard.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ShipComponent } from './components/player/fleet/ship/ship.component';
     AppRoutingModule,
     MaterialModule
   ],
-  providers: [GameService, ArrangeShipsService],
+  providers: [GameService, ArrangeShipsService, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
