@@ -1,0 +1,22 @@
+{
+    "gameLevels": ["easy", "medium", "hard"],
+    "fieldSize": 10,
+    "ships": [
+        {
+            "type": "oneDeck",
+            "quantity": 4
+        },
+        {
+            "type": "twoDeck",
+            "quantity": 3
+        },
+        {
+            "type": "threeDeck",
+            "quantity": 2
+        },
+        {
+            "type": "fourDeck",
+            "quantity": 1
+        }
+    ]
+}

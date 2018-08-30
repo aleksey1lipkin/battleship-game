@@ -3,6 +3,8 @@ body {
     height: 100%;
     width: 100%;
     font-size: 14px;
+    color: #191919;
+    @include Roboto(regular);
 }
 *,
 *:before,

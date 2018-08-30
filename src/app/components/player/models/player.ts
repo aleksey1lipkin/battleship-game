@@ -10,17 +10,15 @@ export class Player {
     deadShipCounter = 0;
     movesHistory: Array<string> = [];
     constructor() {
-        this.fillField();
-        this.initShipArray();
     }
-    public fillField(): void {
+    public fillField(fieldSize: number): void {
         // tslint:disable-next-line: prefer-const
         let cells: Array<Cell> = [];
-        const cellCounter = 100;
+        const cellCounter = fieldSize * fieldSize;
         let x = 0;
         let y = 0;
         for (let i = 0; i < cellCounter; i++) {
-            if (i !== 0 && i % 10 === 0) {
+            if (i !== 0 && i % fieldSize === 0) {
                 x++;
                 y = 0;
             }
@@ -29,18 +27,13 @@ export class Player {
         }
         this.field = cells;
     }
-    private initShipArray() {
-        // TODO change trash below for function
-        this.fleet.push(new Ship(ShipType.oneDeck));
-        this.fleet.push(new Ship(ShipType.oneDeck));
-        this.fleet.push(new Ship(ShipType.oneDeck));
-        this.fleet.push(new Ship(ShipType.oneDeck));
-        this.fleet.push(new Ship(ShipType.twoDeck));
-        this.fleet.push(new Ship(ShipType.twoDeck));
-        this.fleet.push(new Ship(ShipType.twoDeck));
-        this.fleet.push(new Ship(ShipType.threeDeck));
-        this.fleet.push(new Ship(ShipType.threeDeck));
-        this.fleet.push(new Ship(ShipType.fourDeck));
+    public initShipArray(shipsArray: [{type: string, quantity: number}]) {
+        shipsArray.forEach(ship => {
+            const type = ship.type;
+            for (let i = 0; i < ship.quantity; i++) {
+                this.fleet.push(new Ship(ShipType[type]));
+            }
+        });
     }
     public getFired(cell: Cell): string {
       const {x, y} = cell;

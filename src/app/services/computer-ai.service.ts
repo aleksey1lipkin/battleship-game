@@ -16,7 +16,10 @@ export class ComputerAIService {
         private gameService: GameService,
         private getCellNeighborsService: GetCellNeighborsService
     ) {
-        this.field = this.gameService.player.field;
+        this.gameService.settingsChanged
+            .subscribe(
+                settings => this.field = this.gameService.player.field
+            );
     }
     public setLevel(level: string) {
         this.level = GameLevels[level];
@@ -91,9 +94,9 @@ export class ComputerAIService {
         if (firedTargets.length) {
             finalTarget = this.getRandomCell(firedTargets);
         } else {
-            this.level === GameLevels.hard ?
-            finalTarget = this.getNextCell(field) :
-            finalTarget = this.getRandomCell(field);
+            this.level === GameLevels.hard
+                ? (finalTarget = this.getNextCell(field))
+                : (finalTarget = this.getRandomCell(field));
         }
         return finalTarget;
     }

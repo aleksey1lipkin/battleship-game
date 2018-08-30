@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { GameService } from '../../services/game.service';
 import { ComputerAIService } from '../../services/computer-ai.service';
-import { Router } from '@angular/router';
 import { GameLevels } from '../game/models/game.levels';
 import { GameStatusService } from '../../services/game-status.service';
 import { GameStatus } from '../game/models/game.status';
+import { GameSettings } from '../game/models/game.settings';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-    levels: string[] = [];
+export class HomeComponent implements OnInit, OnDestroy {
+    levels: GameLevels[];
+    subscription: Subscription;
     types: string[] = ['computer'];
     isGameVsComputer: boolean;
     loginForm: FormGroup;
@@ -24,15 +27,19 @@ export class HomeComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.subscription = this.gameService.settingsChanged
+            .subscribe(
+                (settings: GameSettings) => {
+                    this.levels = settings.gameLevels;
+                }
+            );
         this.loginForm = new FormGroup({
             name: new FormControl('', Validators.required),
             gameType: new FormControl('', Validators.required)
         });
-        for (const level in GameLevels) {
-            if (isNaN(Number(level))) {
-                this.levels.push(level);
-            }
-        }
+    }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
     onSubmit() {
         const settings = this.loginForm.value;
